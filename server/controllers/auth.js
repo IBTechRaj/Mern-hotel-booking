@@ -1,3 +1,3 @@
 export const showMessage = (req, res) => {
-  res.status(200).send(`Here is your message:  ${req.params.message}`)
+  res.status(200).send(`your message:  ${req.params.message}`)
 }
