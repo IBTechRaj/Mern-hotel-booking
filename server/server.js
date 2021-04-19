@@ -1,11 +1,11 @@
-import express from 'express'
-import { readdirSync } from 'fs'
-import cors from 'cors'
-import mongoose from 'mongoose'
-const morgan = require('morgan')
-require('dotenv').config()
+import express from "express";
+import { readdirSync } from "fs";
+import cors from "cors";
+import mongoose from "mongoose";
+const morgan = require("morgan");
+require("dotenv").config();
 
-const app = express()
+const app = express();
 
 // db connection
 mongoose
@@ -13,19 +13,19 @@ mongoose
     useNewUrlParser: true,
     useFindAndModify: false,
     useUnifiedTopology: true,
-    useCreateIndex: true
+    useCreateIndex: true,
   })
-  .then(() => console.log('DB Connected'))
-  .catch(err => console.log('DB Connection Error: ', err))
+  .then(() => console.log("DB Connected"))
+  .catch((err) => console.log("DB Connection Error: ", err));
 
 // middlewares
-app.use(cors())
-app.use(morgan('dev'))
-app.use(express.json())
+app.use(cors());
+app.use(morgan("dev"));
+app.use(express.json());
 
 // route middleware
-readdirSync('./routes').map(r => app.use('/api', require(`./routes/${r}`)))
+readdirSync("./routes").map((r) => app.use("/api", require(`./routes/${r}`)));
 
-const port = process.env.PORT || 8000
+const port = process.env.PORT || 8000;
 
-app.listen(port, () => console.log(`Server is running on port ${port}`))
+app.listen(port, () => console.log(`Server is running on port ${port}`));
